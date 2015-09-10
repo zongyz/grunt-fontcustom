@@ -17,8 +17,7 @@ module.exports = function (grunt) {
     jshint: {
       all: [
         'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>'
+        'tasks/*.js'
       ],
       options: {
         jshintrc: '.jshintrc',
@@ -33,27 +32,15 @@ module.exports = function (grunt) {
 
     // Configuration to be run (and then tested).
     fontcustom: {
-      default_options: {
-        options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!'
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+      option : {
+        name : 'aliyun-console-iconfont',
+        selector : '.icon-{{glyph}}',
+        input : 'test/svg',
+        output : 'test/out',
+        css : '_iconfont.css',
+        preview : 'iconfont-preview.html',
+        debug : 1
       }
-    },
-
-    // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js']
     }
 
   });
@@ -63,7 +50,7 @@ module.exports = function (grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'fontcustom', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'fontcustom']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
